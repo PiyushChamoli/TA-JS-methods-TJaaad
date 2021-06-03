@@ -104,19 +104,9 @@ function changeArray(arr, fn) {
     console.log(sendMessage("Hello Prompt!", prompt));
 */
 
-// function console(message) {
-//   return console.log(message);
-// }
-// function alerta(message) {
-//   alert(message);
-// }
-// function prompt(message) {
-//   return prompt(message);
-// }
-
-// function sendMessage(message, fn) {
-//   fn(message);
-// }
+function sendMessage(message, fn) {
+  return fn(message);
+}
 
 /*
 
@@ -124,8 +114,8 @@ function changeArray(arr, fn) {
 
 */
 
-function first(addTwo) {
-  return addTwo;
+function first(cb) {
+  return cb;
 }
 
 /*
@@ -139,8 +129,10 @@ function second() {
   return function third(num) {
     return num + 1;
   }
+  return third;
 }
-let secondFunction = second();
+
+let val = second();
 
 
 /*
@@ -150,6 +142,11 @@ let secondFunction = second();
   - return final varibale from the function.
   - also write the required code to call the function.
 */
+
+function callMe(cb) {
+  let final = cb();
+  return final;
+}
 
 // Data Starts (Don't change this)
 const people = [
@@ -184,7 +181,9 @@ const grades = [
     console.log(isAdult(people[2])); // true
 */
 
-function greater()
+function isAdult(personDetails) {
+  return personDetails.age > 18;
+}
 
 /*
   Create a function named isMale which accepts:
@@ -197,6 +196,10 @@ function greater()
     console.log(isMale(grade[2])); // true
 */
 
+function isMale(personDetails) {
+  return personDetails.sex == 'M';
+}
+
 /*
   Create a function named isFemale which accepts:
     - an object
@@ -207,6 +210,10 @@ function greater()
     console.log(isFemale(grade[1])); // true
     console.log(isFemale(grade[2])); // false
 */
+
+function isFemale(personDetails) {
+  return personDetails.sex == 'F';
+}
 
 /*
   Create a function named isGradeA which accepts:
@@ -219,6 +226,10 @@ function greater()
     console.log(isGradeA(grade[2])); // true
 */
 
+function isGradeA(personDetails) {
+  return personDetails.grade > 12;
+}
+
 /*
   Create a function named isGradeB which accepts:
     - an object
@@ -230,6 +241,10 @@ function greater()
     console.log(isGradeB(grade[2])); // false
 */
 
+function isGradeB(personDetails) {
+  return personDetails.grade > 8 && personDetails.grade<=12;
+}
+
 /*
   Create a function named isGradeC which accepts:
     - an object
@@ -240,6 +255,10 @@ function greater()
     console.log(isGradeC(grade[1])); // false
     console.log(isGradeC(grade[2])); // false
 */
+
+function isGradeC(personDetails) {
+  return personDetails.grade <=8;
+}
 
 /*
   Create a function named filterAdult which accepts:
@@ -256,6 +275,17 @@ function greater()
       { name: 'Liam Smith', age: 20 },
     ];
 */
+
+function filterAdult(arr) {
+  let final =[];
+
+  for (let person of arr) {
+    if (isAdult(person)) {
+      final.push(person);
+    }
+  }
+  return final;
+}
 
 /*
   Create a function named filterMale which accepts:
@@ -276,6 +306,17 @@ function greater()
     ];
 */
 
+function filterMale(arr) {
+  let final =[];
+
+  for (let person of arr) {
+    if (isMale(person)) {
+      final.push(person);
+    }
+  }
+  return final;
+}
+
 /*
   Create a function named filterFemale which accepts:
     - an array of objects
@@ -294,6 +335,17 @@ function greater()
       { name: 'Jane', grade: 9, sex: 'F' },
     ]
 */
+
+function filterFemale(arr) {
+  let final =[];
+
+  for (let person of arr) {
+    if (isFemale(person)) {
+      final.push(person);
+    }
+  }
+  return final;
+}
 
 /*
   Create a function named filterGradeA which accepts:
@@ -315,6 +367,17 @@ function greater()
     ]
 */
 
+function filterGradeA(arr) {
+  let final =[];
+
+  for (let person of arr) {
+    if (isGradeA(person)) {
+      final.push(person);
+    }
+  }
+  return final;
+}
+
 /*
   Create a function named filterGradeB which accepts:
     - an array of objects
@@ -334,6 +397,17 @@ function greater()
     ]
 */
 
+function filterGradeB(arr) {
+  let final =[];
+
+  for (let person of arr) {
+    if (isGradeB(person)) {
+      final.push(person);
+    }
+  }
+  return final;
+}
+
 /*
   Create a function named filterGradeC which accepts:
     - an array of objects
@@ -351,6 +425,17 @@ function greater()
       { name: 'Donald', grade: 5, sex: 'M' },
     ]
 */
+
+function filterGradeC(arr) {
+  let final =[];
+
+  for (let person of arr) {
+    if (isGradeC(person)) {
+      final.push(person);
+    }
+  }
+  return final;
+}
 
 /*
 We are repeating lots of code in above functions like filterGradeC, filterGradeB, filterGradeA, filterAdult. We will fix
@@ -373,6 +458,17 @@ filter is a higher order function.
     console.log(filter(grade, isGradeC));
 */
 
+function filter(arr, cb) {
+  let final = [];
+
+  for(let person of arr) {
+    if (cb(person)) {
+      final.push(person);
+    }
+  }
+  return final;
+}
+
 /*
   Create a function named multiplyBy which accepts:
     - a number (num)
@@ -391,3 +487,9 @@ filter is a higher order function.
     console.log(multiplyByFive(20)); // 180
     console.log(multiplyByFive(5)); // 45
 */
+
+function multiplyBy(num) {
+  return function (num2) {
+    return num * num2;
+  }
+}
