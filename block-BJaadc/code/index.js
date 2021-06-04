@@ -10,7 +10,7 @@ console.log(`The first character of ${message} is ${message.charAt(0)}`)
 
 // Log the last character of message using length like `The last character of [message] is [character]`
 
-
+console.log(`The last character of ${message} is ${message.charAt(message.length-1)}`);
 
 // Log the index of word "you" in message
 
@@ -50,11 +50,11 @@ console.log((message.slice(7,8).includes('a')))
 
 // Check and log whether the last 3 character in message is "no!" or not (you can use -3 in slice)
 
-console.log((message.slice(message.length-3).includes('no!')))
+console.log((message.slice(-3).includes('no!')))
 
 // Check and log whether the last 5 character in message is "no!" or not
 
-console.log((message.slice(message.length-5).includes('no!')))
+console.log((message.slice(-5).includes('no!')))
 
 // Log the message variable, all in lowecase
 
