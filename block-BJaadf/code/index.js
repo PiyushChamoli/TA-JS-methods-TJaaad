@@ -36,15 +36,22 @@ fruits.unshift('Dragonfruit');
 
 // Log true or false based on the value at index 0 and 1 is 'Dragon Fruit' and 'Guava' or not
 
-
+if (
+    fruits[0] == 'Dragonfruit' &&
+    fruits[1] == 'Guava'
+) {
+    console.log(true);
+} else {
+    console.log(false);
+}
 
 // Update the value of index 1 to `Pears`
 
-fruits[0] = 'Pears';
+fruits[1] = 'Pears';
 
 // Add the 'Kiwi' and 'Lemon' to the index 1 and 2 and shift the other element to next index (use splice to add element)
 
-fruits.splice(1,2,'Kiwi','Lemon');
+fruits.splice(1,0,'Kiwi','Lemon');
 
 // Remove (slice) all the element from index 5
 
@@ -68,7 +75,7 @@ fruits.forEach((fruit) => console.log(fruit.toLowerCase()));
 
 // Convert all fruits name into lowercase and store in new array named lowercaseFruits
 
-let lowercaseFruits = fruits.toLowerCase;
+let lowercaseFruits = fruits.map((fruit) => fruit.toLowerCase());
 
 // Convert all fruits name into uppercase and store in new array named uppercaseFruits
 
@@ -100,42 +107,23 @@ numbersThree.forEach((num) => console.log(num));
 
 // Create a new variable named doubleNumbers that store the numberThree array (each element should be multiplied by 2). Use map
 
-let doubleNumbers = [];
-numbersThree.map( function (num) {
-    doubleNumbers.push(num*2);
-} );
+let doubleNumbers = numbersThree.map(elm => elm*2);
 
 // Create a new variable named tripleNumbers that store the numberThree array (each element should be multiplied by 3). Use map
 
-let tripleNumbers = [];
-numbersThree.map(function (num) {
-    tripleNumbers.push(num*3);
-})
+let tripleNumbers = numbersThree.map(elm => elm*3);
 
 // Create a new variable named halfNumbers that store the numberThree array (each element should be divided by 2). Use map
 
-let halfNumbers = [];
-numbersThree.map(function (num) {
-    halfNumbers.push(num/2);
-})
+let halfNumbers = numbersThree.map(elm => elm/2);
 
 // Create a new variable named oddNumbers that store all the odd numbers in numbersThree array
 
-let oddNumbers = [];
-numbersThree.forEach(function (num) {
-    if (num%2!==0) {
-        oddNumbers.push(num);
-    }
-})
+let oddNumbers = numbersThree.filter( (elm) => elm % 2 !== 0);
 
 // Create a new variable named evenNumbers that store all the even numbers in numbersThree array
 
-let evenNumbers = [];
-numbersThree.forEach(function (num) {
-    if (num%2==0) {
-        evenNumbers.push(num);
-    }
-})
+let evenNumbers = numbersThree.filter( (elm) => elm % 2 == 0);
 
 // Find the index of 10 in numbersThree array
 
@@ -151,6 +139,8 @@ console.log(numbersTwo.reverse());
 
 // Join all fruits with '-', convert to uppercase and log it
 
-
+console.log(fruits.join('-').toUpperCase());
 
 // Join all fruits with '&', convert to lowercase and log it
+
+console.log(fruits.join('&').toLowerCase());
