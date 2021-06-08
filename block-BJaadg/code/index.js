@@ -32,7 +32,7 @@ console.log(`The index of first is in quote is ${indexOfIs}`);
   The character at index 5 is ' '
 */
 
-for (i=0; i<6; i++) {
+for (let i=0; i<6; i++) {
   console.log(`The character at index ${i} is '${quote.charAt(i)}'`);
 }
 
@@ -78,15 +78,15 @@ quoteSplitted[quoteSplitted.indexOf('today')] = 'tomorrow';
 /*
 12. Find the index of second "o" in quote. Use indexOf
 */
-
+quote.indexOf('o', 8);
 /*
 13. Find the last index of letter "a" in quote.
 */
-console.log(quote.lastIndexOf('a'));
+let last = quote.lastIndexOf('a');
 /*
 14. Find the second last index of letter "a" in quote.
 */
-
+quote.lastIndexOf('a', last - 1);
 /*
 15. Make the quote 70 character long. If it has less characters add rest as .......
 Example: "Hello" (convert to 10 characters) => "Hello....."
@@ -96,7 +96,7 @@ let newQuote = quote.padEnd(70,'.');
 /*
 16. Do same as (15) but the ... should come in start. Store the output in a new variable
 */
-let newQuote15 = quote.padEnd(70, '*');
+let newQuote15 = quote.padStart(70, '*');
 /*
 17. Log the repeat of "Hello World!" 10 times.
 */
@@ -105,15 +105,18 @@ console.log("Hello World!".repeat(10));
 18. Replace today to tomorrow in quote.
 */
 console.log(quoteSplitted.join(' '));
+quote.replace('today', 'tomorrow');
 /*
 19. Replace Stark to Lannister in quoteTo
 */
-
+quote.replace('Stark', "Lannister");
 /*
 20. Make the quote of length 30 and put ... at the end. (use slice)
 */
-
+let limit = quote.slice(0,30) + '...';
 /*
 21. Find out does quote, from, to starts with "A"
 */
 console.log(quote.startsWith('A'));
+console.log(from.startsWith('A'));
+console.log(to.startsWith('A'));
