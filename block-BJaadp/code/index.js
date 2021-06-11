@@ -17,17 +17,38 @@ let persons = [
 
 // Find the average grade
 
+console.log(persons.reduce((acc, cv) => acc += cv.grade,0)/persons.length);
+
 // Find the average grade of male
+
+let allMale = persons.filter((person) => person.sex === 'M');
+
+console.log(allMale.reduce((acc,cv) => acc+= cv.grade,0) / allMale.length);
 
 // Find the average grade of female
 
+let allFemale = persons.filter((person) => person.sex === 'F');
+
+console.log(allFemale.reduce((acc,cv) => acc+= cv.grade,0) / allFemale.length);
+
 // Find the highest grade
+
+let allGrade = persons.map((person) => person.grade);
+
+console.log(allGrade.reduce((acc,cv) => {
+  if (cv>acc) {
+    acc = cv;
+    return acc;
+  }
+},0));
 
 // Find the highest grade in male
 
 // Find the highest grade in female
 
 // Find the highest grade for people whose name starts with 'J' or 'P'
+
+persons.filter((person) => person.name.startsWith('J') || person.name.startsWith('P'))
 
 const fruitBasket = [
   'banana',
@@ -52,6 +73,16 @@ Output:
 {banana: 2, cherry: 3, orange: 3, apple: 2, fig: 1}
 */
 
+let fruitsObj = {};
+fruitBasket.filter((fruit) => {
+  if (fruit in fruitsObj) {
+    fruitsObj[fruit] += 1;
+  } else {
+    fruitsObj[fruit] = 1;
+  }
+});
+console.log(fruitsObj);
+
 /* 
 
 Use the fruitBasket array to create an array of array. Each array will contain two values name of fruit and number of times
@@ -62,6 +93,9 @@ Output:
 [['banana', 2], ['cherry', 3], ['orange', 3], ['apple', 2], ['fig', 1]]
 */
 
+
+
+
 const data = [
   [1, 2, 3],
   [4, 5, 6],
@@ -70,6 +104,8 @@ const data = [
 ];
 
 // Using reduce flat data array
+
+data.reduce((acc,cv,i) =>{},0);
 
 const dataTwo = [
   [1, 2, 3],
@@ -89,6 +125,22 @@ Create these functions which accepts a number value and returns a number value:
   - `triple` triples the input 
   - `half` converts the value to half and return the integer value not decimal (use Math.round(21.5) => 21)
 */
+
+function increment(num) {
+  return num + 1;
+}
+function double(num) {
+  return num * 2;
+}
+function decrement(num) {
+  return num - 1;
+}
+function triple(num) {
+  return num * 3;
+}
+function half(num) {
+  return Math.round(num/2);
+}
 
 let pipeline = [
   increment,
