@@ -3,78 +3,55 @@
 function countAllPeople() {
   let totalCount = 0;
   got.houses.forEach(house => {
-    for (person of house.people) {
-      totalCount += 1;
-    }
+    totalCount += house.people.length;
   });
   return totalCount;
 }
 
 function peopleByHouses() {
   let totalCount = {};
-  for (house of got.houses) {
+  got.houses.forEach((house) => {
     totalCount[house.name] = house.people.length;
-  }
+  });
   return totalCount;
 }
 
 function everyone() {
   let allNames = [];
-  for (house of got.houses) {
-    for (person of house.people) {
-      allNames.push(person.name);
-    }
-  }
+  got.houses.forEach((house) => {
+    let peopleName = house.people.map((person) => person.name);
+    allNames = allNames.concat(peopleName);
+  });
   return allNames;
 }
 
 function nameWithS() {
   let nameS = [];
-  for (house of got.houses) {
-    for (person of house.people) {
-      if (person.name.includes('S') || person.name.includes('s')) {
-        nameS.push(person.name);
-      }
-    }
-  }
-  return nameS;
+  let allPeople = everyone();
+  return allPeople.filter((name) => name.toLowerCase().includes('s'));
 }
 
 function nameWithA() {
-  let nameA = [];
-  for (house of got.houses) {
-    for (person of house.people) {
-      if (person.name.includes('A') || person.name.includes('a')) {
-        nameA.push(person.name);
-      }
-    }
-  }
-  return nameA;
+  let allPeople = everyone();
+  return allPeople.filter((name) => name.toLowerCase().includes('a'));
 }
 
 function surnameWithS() {
-  let nameEndS = [];
-  for (house of got.houses) {
-    for (person of house.people) {
-      if (person) {
-        nameEndS.push(person.name);
-      }
-    }
-  }
-  return nameEndS;
+  let allPeople = everyone();
+  return allPeople.filter((name) => name.split(' ')[1].toLowerCase().includes('s'));
 }
 
 function surnameWithA() {
-  // your code goes here
+  let allPeople = everyone();
+  return allPeople.filter((name) => name.split(' ')[1].toLowerCase().includes('a'));
 }
 
 function peopleNameOfAllHouses() {
-  let peopleHouse = {};
-  for (house of got.houses) {
-    for (person of house.people) {
-      
-    }
-  }
+  let final = {};
+  got.houses.forEach((house) =>{
+    final[house.name] = house.people.map((p) => p.name);
+  });
+  return final;
 }
 
 // Testing your result after writing your function
