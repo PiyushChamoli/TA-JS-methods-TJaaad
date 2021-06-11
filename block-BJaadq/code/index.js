@@ -1,27 +1,67 @@
 // NOTE: You can not use reduce methods to solve this exercise
 
 function countAllPeople() {
-  // your code goes here
+  let totalCount = 0;
+  got.houses.forEach(house => {
+    for (person of house.people) {
+      totalCount += 1;
+    }
+  });
+  return totalCount;
 }
 
 function peopleByHouses() {
-  // your code goes here
+  let totalCount = {};
+  for (house of got.houses) {
+    totalCount[house.name] = house.people.length;
+  }
+  return totalCount;
 }
 
 function everyone() {
-  // your code goes here
+  let allNames = [];
+  for (house of got.houses) {
+    for (person of house.people) {
+      allNames.push(person.name);
+    }
+  }
+  return allNames;
 }
 
 function nameWithS() {
-  // your code goes here
+  let nameS = [];
+  for (house of got.houses) {
+    for (person of house.people) {
+      if (person.name.includes('S') || person.name.includes('s')) {
+        nameS.push(person.name);
+      }
+    }
+  }
+  return nameS;
 }
 
 function nameWithA() {
-  // your code goes here
+  let nameA = [];
+  for (house of got.houses) {
+    for (person of house.people) {
+      if (person.name.includes('A') || person.name.includes('a')) {
+        nameA.push(person.name);
+      }
+    }
+  }
+  return nameA;
 }
 
 function surnameWithS() {
-  // your code goes here
+  let nameEndS = [];
+  for (house of got.houses) {
+    for (person of house.people) {
+      if (person) {
+        nameEndS.push(person.name);
+      }
+    }
+  }
+  return nameEndS;
 }
 
 function surnameWithA() {
@@ -29,7 +69,12 @@ function surnameWithA() {
 }
 
 function peopleNameOfAllHouses() {
-  // your code goes here
+  let peopleHouse = {};
+  for (house of got.houses) {
+    for (person of house.people) {
+      
+    }
+  }
 }
 
 // Testing your result after writing your function
