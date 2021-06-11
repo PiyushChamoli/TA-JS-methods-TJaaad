@@ -35,20 +35,27 @@ console.log(allFemale.reduce((acc,cv) => acc+= cv.grade,0) / allFemale.length);
 
 let allGrade = persons.map((person) => person.grade);
 
-console.log(allGrade.reduce((acc,cv) => {
-  if (cv>acc) {
-    acc = cv;
-    return acc;
-  }
-},0));
+// console.log(allGrade.reduce((acc,cv) => {
+//   if (cv>acc) {
+//     acc = cv;
+//     return acc;
+//   }
+// },0));
+
+let highest = [...allGrade].sort((a,b) => a-b).pop();
 
 // Find the highest grade in male
 
+let highestMale = [...allMale].map((p) => p.grade).sort((a,b) => a-b).pop();
+
 // Find the highest grade in female
+
+let highestFemale = [...allFemale].map((p) => p.grade).sort((a,b) => a-b).pop();
 
 // Find the highest grade for people whose name starts with 'J' or 'P'
 
-persons.filter((person) => person.name.startsWith('J') || person.name.startsWith('P'))
+console.log(persons.filter((person) => person.name.startsWith('J') || person.name.startsWith('P'))
+.map((p) => p.grade).sort((a,b) => a-b).pop);
 
 const fruitBasket = [
   'banana',
@@ -73,15 +80,24 @@ Output:
 {banana: 2, cherry: 3, orange: 3, apple: 2, fig: 1}
 */
 
-let fruitsObj = {};
-fruitBasket.filter((fruit) => {
-  if (fruit in fruitsObj) {
-    fruitsObj[fruit] += 1;
+// let fruitsObj = {};
+// fruitBasket.filter((fruit) => {
+//   if (fruit in fruitsObj) {
+//     fruitsObj[fruit] += 1;
+//   } else {
+//     fruitsObj[fruit] = 1;
+//   }
+// });
+// console.log(fruitsObj);
+
+let fruitsObj = fruitBasket.reduce((acc, cv) => {
+  if (acc[cv]) {
+    acc[cv] += 1;
   } else {
-    fruitsObj[fruit] = 1;
+    acc[cv] = 1;
   }
-});
-console.log(fruitsObj);
+  return acc;
+},{});
 
 /* 
 
@@ -93,7 +109,10 @@ Output:
 [['banana', 2], ['cherry', 3], ['orange', 3], ['apple', 2], ['fig', 1]]
 */
 
-
+let fruitArray = Object.keys(fruitsObj).reduce((acc,cv) => {
+  acc = acc.concat([[cv, fruitsObj[cv]]]);
+  return acc;
+},[]);
 
 
 const data = [
@@ -105,7 +124,10 @@ const data = [
 
 // Using reduce flat data array
 
-data.reduce((acc,cv,i) =>{},0);
+data.reduce((acc,cv) =>{
+  acc = acc.concat(cv);
+  return acc;
+},[]);
 
 const dataTwo = [
   [1, 2, 3],
@@ -115,6 +137,11 @@ const dataTwo = [
 ];
 
 // Using reduce flat dataTwo array
+
+dataTwo.reduce((acc,cv) => {
+  acc = acc.concat(cv.flat(Infinity));
+  return acc;
+},[]);
 
 /*
 
@@ -167,6 +194,12 @@ EXAMPLE:
   ...
 */
 
+pipeline.reduce((acc, cv) => {
+  acc = cv(acc);
+  return acc;
+},3);
+
+
 let pipeline2 = [
   increment,
   half,
@@ -182,3 +215,8 @@ let pipeline2 = [
 ];
 
 // Find the output using pipeline2 the initial value if 8
+
+pipeline2.reduce((acc, cv) => {
+  acc = cv(acc);
+  return acc;
+},8);
